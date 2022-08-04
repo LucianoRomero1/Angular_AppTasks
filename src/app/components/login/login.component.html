@@ -1,1 +1,29 @@
-<p>login works!</p>
+
+<div class="container">
+    <div class="card m-3">
+        <div class="card-header">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="card-body">
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-6">
+                <p>
+                    <label for="email">Email: </label>
+                    <!-- ngModel es un twowaydatabinding, en resumen, donde se cambie en un lado, se cambia en todos los demas
+                        En este caso, le estoy modificando los datos a user.email por lo cual se modifica en el componente -->
+                    <input class="form-control" type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required/>
+                    <span class="text-danger" *ngIf="!email.valid && email.touched">Invalid email</span>
+                </p>
+                <p>
+                    <label for="password">Password: </label>
+                    <!-- se declara el #password ngModel para informarle a Angular q va a trabajar con el componente
+                        en resumen es para que se conozca con el componente -->
+                    <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required/>
+                    <span class="text-danger" *ngIf="!password.valid && password.touched">Invalid password</span>
+                </p>
+        
+                <input class="btn btn-info" type="submit" value="Login" [disabled]="!loginForm.form.valid" />
+            </form>
+        </div>
+    </div>
+</div>
+
