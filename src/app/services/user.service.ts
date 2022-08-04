@@ -31,4 +31,28 @@ export class UserService{
         return this._http.post(this.url + '/login', params, {headers: headers});
     }
 
+    getIdentity(){
+        let identity =  JSON.parse(localStorage.getItem("identity") || "{}");
+        
+        if(Object.keys(identity).length != 0){
+            this.identity = identity;
+        }else{
+            this.identity = null;
+        }
+
+        return this.identity;
+    }
+
+    getToken(){
+        let token =  JSON.parse(localStorage.getItem("token") || "{}");
+
+        if(Object.keys(token).length != 0){
+            this.token = token;
+        }else{ 
+            this.token = null;
+        }
+
+        return this.token;
+    }
+
 }

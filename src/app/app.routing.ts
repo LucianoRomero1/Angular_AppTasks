@@ -1,5 +1,6 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule, Route } from "@angular/router";
+import { DefaultComponent } from "./components/default/default.component";
 
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
@@ -7,9 +8,11 @@ import { RegisterComponent } from "./components/register/register.component";
 //Defino todas las rutas 
 const appRoutes: Routes = [
     //Ruta vacía
-    {path: '', component: LoginComponent},
+    {path: '', component: DefaultComponent},
     //Rutas definidas
     {path: 'login', component: LoginComponent},
+    //Sirve para vaciar el local storage
+    {path: 'login/:id', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     //Ruta que da error por defecto cargar login, tengo que ponerlo último, sino no funciona
     {path: '**', component: LoginComponent},

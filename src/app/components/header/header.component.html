@@ -5,8 +5,9 @@
     <a class="navbar-brand" [routerLink]="['/']">
       <img class="logo" src="../assets/img/logo.png" alt="Logo web">
     </a>
+    <!-- Con los ngIf muestro que quiero que se vea o no según si está o no logueado, es como el isgranted de twig -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto" *ngIf="identity && identity.sub">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']"><i class="fa fa-home mr-1" aria-hidden="true"></i>Home</a>
         </li>
@@ -30,11 +31,13 @@
             </div> -->
           </a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity && identity.sub">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Logout</a>
+          <a class="nav-link" [routerLink]="['/login', 1]"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Logout</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']" >Login</a>
         </li>

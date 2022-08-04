@@ -1,5 +1,13 @@
 
 <div class="container">
+
+    <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
+        <p>Login successfully. Welcome {{identity.email}}!</p>
+    </div>  
+    <div class="identity-alert alert alert-danger" *ngIf="identity && identity.msg">
+        <p>Login failed {{identity.email}}!</p>
+    </div> 
+
     <div class="card m-3">
         <div class="card-header">
             <h4>{{title}}</h4>

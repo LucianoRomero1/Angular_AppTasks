@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 
 //Esto se lo conoce como decorador el @ algo
@@ -34,14 +34,12 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     console.log("Component login.component has been loaded");
-    //Si lo descomento y quiero cambiar de user explota todo
-    //console.log(this.user = JSON.parse(localStorage.getItem("identity") || "{}"));
-    //console.log(this.user = JSON.parse(localStorage.getItem("token") || "{}"));
+    this.logout();
+    this.redirectIfIdentity();
   }
 
   onSubmit(){
     //Suscribe es para suscribirse al observable
-    console.log(this.user);
     this._userService.signup(this.user).subscribe(
       {
         next: (response) => {
@@ -65,6 +63,7 @@ export class LoginComponent implements OnInit{
                       //El status solo se devuelve en caso de un error, osea que sino existe entra aca
                       if(!this.identity.status){
                         localStorage.setItem('token', JSON.stringify(this.token));         
+                        window.location.href = '/';
                       }
                     }          
                   },
@@ -81,6 +80,29 @@ export class LoginComponent implements OnInit{
         }, 
       }
     );
+  }
+
+  logout(){
+    this._route.params.forEach((params: Params) => {
+      let logout = params['id'];
+      if(logout == 1){
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+
+        this.identity = null;
+        this.token    = null;
+
+        window.location.href = '/login';
+      }
+    });
+  }
+
+  //Va a acceder a identity y si existe 
+  redirectIfIdentity(){
+    let identity = this._userService.getIdentity();
+    if(identity != null && identity.sub){
+      this._router.navigate(['/']);
+    }
   }
   
   //Lo dejo por las dudas, esto está hecho copiandole al del curso, pero estaba obsoleto
