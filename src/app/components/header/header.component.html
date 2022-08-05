@@ -24,11 +24,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-cog mr-1" aria-hidden="true"></i>Settings
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" [routerLink]="['/']">Create</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" [routerLink]="['/']">Details</a>
-            </div> -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="['/user-edit']">Edit User</a>
+            </div>
           </a>
         </li>
       </ul>
@@ -37,7 +35,7 @@
           <a class="nav-link" [routerLink]="['/login', 1]"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Logout</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+      <ul class="nav navbar-nav ml-auto" *ngIf="!identity">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']" >Login</a>
         </li>

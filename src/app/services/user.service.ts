@@ -28,7 +28,7 @@ export class UserService{
             'Content-Type': 'application/x-www-form-urlencoded'
         });
 
-        return this._http.post(this.url + '/login', params, {headers: headers});
+        return this._http.post(this.url+'/login', params, {headers: headers});
     }
 
     getIdentity(){
@@ -53,6 +53,27 @@ export class UserService{
         }
 
         return this.token;
+    }
+
+    register(user_to_register){
+        let json = JSON.stringify(user_to_register);
+        let params = "json="+json;
+
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        return this._http.post(this.url+'/user/register', params, {headers: headers});
+    }
+
+    update_user(user_to_update){
+        let json    = JSON.stringify(user_to_update);
+        let params  = 'json='+json+'&&authorization='+this.getToken();
+        console.log(params);
+        
+        let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+        
+        return this._http.post(this.url+'/user/edit', params, {headers: headers});
     }
 
 }

@@ -1,18 +1,18 @@
 
 <div class="container">
     <div class="identity-alert alert alert-success" *ngIf="status == 'success'">
-        <p>You have successfully registered, login<a [routerLink]="['/login']"> from here</a></p>
+        <p>Your data was successfully modified</p>
     </div>  
     <div class="identity-alert alert alert-danger" *ngIf="status == 'error'">
-        <p>You have not registered correctly</p>
-    </div>   
+        <p>Your data could not be updated</p>
+    </div>      
 
     <div class="card m-3">
         <div class="card-header">
             <h4>{{title}}</h4>
         </div>
         <div class="card-body">
-            <form #registerForm="ngForm" (ngSubmit)="onSubmit(); registerForm.reset();" class="col-md-6">
+            <form #updateForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-6">
                 <p>
                     <label for="name">Name: </label>
                     <input class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="user.name" required />
@@ -30,11 +30,11 @@
                 </p>
                 <p>
                     <label for="password">Password: </label>
-                    <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required />
+                    <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" />
                     <span class="text-danger" *ngIf="!password.valid && password.touched">Invalid password</span>
                 </p>
         
-                <input class="btn btn-success" type="submit" value="Register" [disabled]="!registerForm.form.valid" />
+                <input class="btn btn-warning text-white" type="submit" value="{{title}}" [disabled]="!updateForm.form.valid" />
             </form>
         </div>
     </div>

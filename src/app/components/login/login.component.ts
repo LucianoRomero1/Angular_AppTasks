@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log("Component login.component has been loaded");
     this.logout();
     this.redirectIfIdentity();
   }
@@ -100,6 +99,7 @@ export class LoginComponent implements OnInit{
   //Va a acceder a identity y si existe 
   redirectIfIdentity(){
     let identity = this._userService.getIdentity();
+    
     if(identity != null && identity.sub){
       this._router.navigate(['/']);
     }
