@@ -30,7 +30,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.identity);
     
-    if(this.identity == null){
+    if(this.identity == null || !this.identity.sub){
       this._router.navigate(['/login']);
     }else{
       this.user = new User(

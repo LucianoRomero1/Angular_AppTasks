@@ -10,7 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { DefaultComponent } from './components/default/default.component';
-import { UserEditComponent } from './components/user-edit/user-edit.component'
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { NewTaskComponent } from './components/task/new-task/new-task.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component'
     HeaderComponent,
     DefaultComponent,
     UserEditComponent,
+    NewTaskComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { DefaultComponent } from "./components/default/default.component";
 
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { NewTaskComponent } from "./components/task/new-task/new-task.component";
 import { UserEditComponent } from "./components/user-edit/user-edit.component";
 
 //Defino todas las rutas 
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     {path: 'login/:id', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'user-edit', component: UserEditComponent},
+    {path: 'new-task', component: NewTaskComponent},
     //Ruta que da error por defecto cargar login, tengo que ponerlo último, sino no funciona
     {path: '**', component: LoginComponent},
 
