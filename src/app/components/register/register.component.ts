@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   public title: string;
   public user: User;
   public status;
+  public msg: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -32,8 +33,13 @@ export class RegisterComponent implements OnInit {
     this._userService.register(this.user).subscribe(
       {
         next: (response) => {
-          this.status = "success";
-          this.user  = new User(1, "user", "", "", "", "");
+          if(Object.values(response)[0] != "error" || Object.values(response)[1] != "400"){
+            this.status = "success";
+            this.user   = new User(1, "user", "", "", "", "");
+          }else{
+            this.status = "error"
+            this.msg    = Object.values(response)[2];        
+          }    
         },
         error: (error) => {          
           console.log(<any>error);

@@ -48,8 +48,13 @@ export class UserEditComponent implements OnInit {
     this._userService.update_user(this.user).subscribe(
       {
         next: (response) => {
-          this.status = "success";
-          localStorage.setItem('identity', JSON.stringify(this.user));
+          //Con este IF valido el response status y code
+          if(Object.values(response)[0] != "error" || Object.values(response)[1] != "400"){
+            this.status = "success";
+            localStorage.setItem('identity', JSON.stringify(this.user));
+          }else{
+            this.status = "error";
+          }
         },
         error: (error) => {          
           console.log(<any>error);

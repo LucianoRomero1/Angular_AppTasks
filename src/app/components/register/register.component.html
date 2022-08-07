@@ -4,7 +4,7 @@
         <p>You have successfully registered, login<a [routerLink]="['/login']"> from here</a></p>
     </div>  
     <div class="identity-alert alert alert-danger" *ngIf="status == 'error'">
-        <p>You have not registered correctly</p>
+        <p>You have not registered correctly. {{msg}}</p>
     </div>   
 
     <div class="card m-3">
