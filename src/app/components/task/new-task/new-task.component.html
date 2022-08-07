@@ -1,1 +1,39 @@
 <p>new-task works!</p>
+
+<div class="container">
+    <!-- <div class="identity-alert alert alert-success" *ngIf="status == 'success'">
+        <p>Your data was successfully modified</p>
+    </div>  
+    <div class="identity-alert alert alert-danger" *ngIf="status == 'error'">
+        <p>Your data could not be updated</p>
+    </div>       -->
+    <div class="card m-3">
+        <div class="card-header">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="card-body">
+            <form #taskNewForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-6">
+                <p>
+                    <label for="title">Title: </label>
+                    <input class="form-control" type="text" title="title" required />
+                </p>
+                <p>
+                    <label for="surname">Description: </label>
+                    <textarea class="form-control" name="surname" cols="30" rows="10"></textarea>
+                </p>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>     
+                <input class="btn btn-success text-white" type="submit" value="{{title}}" [disabled]="!taskNewForm.form.valid" />
+            </form>
+        </div>
+    </div>
+</div>
+
