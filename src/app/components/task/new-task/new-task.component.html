@@ -1,33 +1,34 @@
 <div class="container">
-    <!-- <div class="identity-alert alert alert-success" *ngIf="status == 'success'">
-        <p>Your data was successfully modified</p>
+    <div class="identity-alert alert alert-success" *ngIf="statusMsg == 'success'">
+        <p>Task has been successfully created</p>
     </div>  
-    <div class="identity-alert alert alert-danger" *ngIf="status == 'error'">
-        <p>Your data could not be updated</p>
-    </div>       -->
+    <div class="identity-alert alert alert-danger" *ngIf="statusMsg == 'error'">
+        <p>Task could not be created</p>
+    </div>      
     <div class="card m-3">
         <div class="card-header">
-            <h4>{{title}}</h4>
+            <h4>{{pageTitle}}</h4>
         </div>
         <div class="card-body">
-            <form #taskNewForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-6">
+            <form #taskNewForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-6">
                 <p>
                     <label for="title">Title: </label>
-                    <input class="form-control" type="text" title="title" required />
+                    <input class="form-control" type="text" name="title" #title="ngModel" [(ngModel)]="task.title" required />
+                    <span class="text-danger" *ngIf="!title.valid && !title.touched">Invalid title</span>
                 </p>
                 <p>
-                    <label for="surname">Description: </label>
-                    <textarea class="form-control" name="surname" rows="4"></textarea>
+                    <label for="description">Description: </label>
+                    <textarea class="form-control" name="description" rows="4" #description="ngModel" [(ngModel)]="task.description"></textarea>
                 </p>
                 <p>
                     <label for="status">Status: </label>
-                    <select class="form-control" name="status">
+                    <select class="form-control" name="status" #status="ngModel" [(ngModel)]="task.status" required>
                         <option value="new">New</option>
                         <option value="to do">To do</option>
                         <option value="done">Done</option>
                     </select>
                 </p>
-                <input class="btn btn-success text-white" type="submit" value="{{title}}" [disabled]="!taskNewForm.form.valid" />
+                <input class="btn btn-info" type="submit" value="{{pageTitle}}" [disabled]="!taskNewForm.form.valid" />
             </form>
         </div>
     </div>
