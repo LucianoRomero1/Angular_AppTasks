@@ -17,7 +17,7 @@ export class NewTaskComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router
   ){
-    this.title = "New task";
+    this.title = "Create task";
     this.identity = this._userService.getIdentity();
   }
 
