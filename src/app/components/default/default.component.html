@@ -1,1 +1,55 @@
-<h1>{{title}}</h1>
+<div class="card mb-4">
+    <div class="card-header text-center p-3">
+        <h4>{{title}}</h4>
+    </div>
+    <div class="card-body">
+        <div *ngIf="!identity || identity == null">
+            <p class="text-warning">Please, login to see more options</p>
+        </div>
+        <div class="text-center" *ngIf="identity && identity.sub">
+            <div class="all-tasks">
+                <div class="text-center loader" *ngIf="loading == 'show'">
+                    <img src="assets/img/loader.gif" alt="Loading...">
+                </div>
+            </div>
+            <div class="row" *ngIf="tasks && tasks.length >= 1 && loading == 'hide'">
+                <div class="col col-md-4" id="tasks-list" *ngFor="let task of tasks">
+                    <div class="card task-item m-3">
+                        <div *ngIf="task.status == 'new'">
+                            <h5 class="card-header bg-primary text-white">New</h5>
+                        </div>
+                        <div *ngIf="task.status == 'to do'">
+                            <h5 class="card-header bg-secondary text-white">To do</h5>
+                        </div>
+                        <div *ngIf="task.status == 'done'">
+                            <h5 class="card-header bg-success text-white">Done</h5>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-text">{{task.title}}</h4>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-info" [routerLink]="['/task', task.id]" routerLinkActive="router-link-active" >Detail</a>
+                            <a class="btn btn-warning" href="#/">Edit</a>
+                            <a class="btn btn-danger" href="#/">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="pagination pagination-md float-right mt-2" *ngIf="tasks && tasks.length > 1">
+                <li class="page-item">
+                    <a class="page-link" [routerLink]="['/index', pagePrev]" aria-label="Previous">
+                        Previous
+                    </a>
+                </li>
+                <li *ngFor="let page of pages">
+                    <a class="page-link" [routerLink]="['/index', page+1]">{{page+1}}</a>
+                </li>
+                <li>
+                    <a class="page-link" [routerLink]="['/index', pageNext]" aria-label="Next">
+                        Next
+                    </a>
+                </li>
+           </ul>
+        </div>
+    </div>
+</div>

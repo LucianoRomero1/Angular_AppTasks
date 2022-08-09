@@ -5,11 +5,11 @@ import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 
+
 @Injectable()
 export class TaskService{
 
     public url: string;
-
     constructor(
         private _http: HttpClient
     ){
@@ -25,5 +25,21 @@ export class TaskService{
         });
 
         return this._http.post(this.url+'/task/new', params, {headers: headers});
+    }
+
+    getTasks(token, page?){
+        let params = "authorization="+token;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        
+
+        if(page == null){
+            page = 1;
+        }
+
+        return this._http.post(this.url+'/task/list?page='+page, params, {headers: headers});
+
     }
 }

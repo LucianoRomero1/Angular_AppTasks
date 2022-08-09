@@ -12,6 +12,7 @@ import { HttpClientModule, HttpHeaders, HttpResponse } from "@angular/common/htt
 import { DefaultComponent } from './components/default/default.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewTaskComponent } from './components/task/new-task/new-task.component';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NewTaskComponent } from './components/task/new-task/new-task.component'
     DefaultComponent,
     UserEditComponent,
     NewTaskComponent,
+    TaskDetailComponent,
   ],
   imports: [
     BrowserModule,
