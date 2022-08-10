@@ -69,7 +69,6 @@ export class UserService{
     update_user(user_to_update){
         let json    = JSON.stringify(user_to_update);
         let params  = 'json='+json+'&&authorization='+this.getToken();
-        console.log(params);
         
         let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
         

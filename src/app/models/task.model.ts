@@ -1,3 +1,5 @@
+import { User } from "./user.model";
+
 export class Task {
     constructor(
         public id: number,
@@ -6,6 +8,7 @@ export class Task {
         public status: string,
         public createdAt,
         public updatedAt,
+        public user?: User
     ){
 
     }

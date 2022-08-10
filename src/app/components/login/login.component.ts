@@ -61,8 +61,10 @@ export class LoginComponent implements OnInit{
                     }else{
                       //El status solo se devuelve en caso de un error, osea que sino existe entra aca
                       if(!this.identity.status){
-                        localStorage.setItem('token', JSON.stringify(this.token));         
-                        window.location.href = '/';
+                        localStorage.setItem('token', JSON.stringify(this.token));    
+                        setTimeout(() => {
+                          this._router.navigate(['/']);
+                        }, 1000);     
                       }
                     }          
                   },

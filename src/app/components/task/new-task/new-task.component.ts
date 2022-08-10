@@ -44,7 +44,6 @@ export class NewTaskComponent implements OnInit {
           if(Object.values(response)[0] != "error" || Object.values(response)[1] != "400"){
             this.statusMsg = "success";
             this.task = Object.values(response)[3];
-            //this._router.navigate(['/task', this.task.id]);
             setTimeout(() => {
               this._router.navigate(['/']);
             }, 1000);

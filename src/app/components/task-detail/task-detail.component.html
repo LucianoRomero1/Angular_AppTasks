@@ -1,1 +1,19 @@
-<p>task-detail works!</p>
+
+<div class="text-center loader" *ngIf="loading == 'show'">
+    <img src="assets/img/loader.gif" alt="Loading...">
+ </div>
+<div class="container" *ngIf="task && loading == 'hide'">
+    <div class="card m-3">
+        <div class="card-header text-center">
+            <h4 class="text-capitalize">{{task.title}}</h4>
+            <!-- Agregar boton de editar o eliminar desde aca -->
+        </div>
+        <div class="card-body">
+           <p>{{task.description}}</p>
+        </div>
+        <div class="card-footer text-right" *ngIf="task.user">
+            <p>Created by <b>{{task.user.name}} {{task.user.surname}}</b> - <i class="text-muted">{{task.createdAt.timestamp}}</i></p>
+        </div>
+    </div>
+</div>
+

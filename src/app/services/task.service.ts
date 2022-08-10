@@ -33,13 +33,20 @@ export class TaskService{
             'Content-Type': 'application/x-www-form-urlencoded'
         });
 
-        
-
         if(page == null){
             page = 1;
         }
 
         return this._http.post(this.url+'/task/list?page='+page, params, {headers: headers});
 
+    }
+
+    getTask(token, id){
+        let params = "authorization="+token;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        return this._http.post(this.url+'/task/detail/'+id, params, {headers: headers});
     }
 }

@@ -27,9 +27,7 @@ export class UserEditComponent implements OnInit {
     this.token    = this._userService.getToken();
   }
 
-  ngOnInit(): void {
-    console.log(this.identity);
-    
+  ngOnInit(): void { 
     if(this.identity == null || !this.identity.sub){
       this._router.navigate(['/login']);
     }else{
