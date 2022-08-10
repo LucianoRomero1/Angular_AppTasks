@@ -1,13 +1,34 @@
-<div class="container">
+<div class="text-center loader" *ngIf="loading == 'show'">
+    <img src="assets/img/loader.gif" alt="Loading...">
+ </div>
+<div class="container" *ngIf="!loading || task">
     <div class="identity-alert alert alert-success" *ngIf="statusMsg == 'success'">
-        <p>Task has been successfully created</p>
+        <p *ngIf="pageTitle == 'New task'">Task has been successfully created</p>
+        <p *ngIf="pageTitle == 'Edit task'">Task has been updated</p>
     </div>  
     <div class="identity-alert alert alert-danger" *ngIf="statusMsg == 'error'">
-        <p>Task could not be created</p>
+        <p *ngIf="pageTitle == 'New task'">Task could not be created</p>
+        <p *ngIf="pageTitle == 'Edit task'">Task could not be updated</p>
     </div>      
     <div class="card m-3">
         <div class="card-header">
-            <h4>{{pageTitle}}</h4>
+            <div class="row" *ngIf="pageTitle == 'Edit task'">
+                <div class="col col-md-1">
+                    <a class="btn actionButtons mr-2 ml-2" [routerLink]="['/task', task.id]" routerLinkActive="router-link-active" title="Back"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                </div>
+                <div class="col col-md-11 text-center">
+                    <h4>{{pageTitle}}</h4>
+                </div>
+            </div>
+            <div class="row" *ngIf="pageTitle == 'New task'">
+                <div class="col col-md-1">
+                    <a class="btn actionButtons mr-2 ml-2" [routerLink]="['/']" routerLinkActive="router-link-active" title="Back"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                </div>
+                <div class="col col-md-11 text-center">
+                    <h4>{{pageTitle}}</h4>
+                </div>
+            </div>
+            
         </div>
         <div class="card-body">
             <form #taskNewForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-6">
@@ -28,7 +49,7 @@
                         <option value="done">Done</option>
                     </select>
                 </p>
-                <input class="btn btn-info" type="submit" value="{{pageTitle}}" [disabled]="!taskNewForm.form.valid" />
+                <input class="btn btn-info" type="submit" value="Save changes" [disabled]="!taskNewForm.form.valid" />
             </form>
         </div>
     </div>

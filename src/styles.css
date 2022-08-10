@@ -3,3 +3,12 @@
 .logo{
     height: 35px;
 }
+
+.actionButtons :hover{
+    transform: scale(1.5);
+    transition: 0.3s;
+}
+
+.iconButton{
+    font-size: 25px;
+}

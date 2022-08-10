@@ -13,6 +13,7 @@ import { DefaultComponent } from './components/default/default.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewTaskComponent } from './components/task/new-task/new-task.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
+import { EditTaskComponent } from './components/task/new-task/edit-task.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
     UserEditComponent,
     NewTaskComponent,
     TaskDetailComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

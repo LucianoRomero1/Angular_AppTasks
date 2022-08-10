@@ -4,9 +4,18 @@
  </div>
 <div class="container" *ngIf="task && loading == 'hide'">
     <div class="card m-3">
-        <div class="card-header text-center">
-            <h4 class="text-capitalize">{{task.title}}</h4>
-            <!-- Agregar boton de editar o eliminar desde aca -->
+        <div class="card-header">
+            <div class="row">
+                <div class="col col-md-1">
+                    <a class="btn actionButtons mr-2 ml-2" [routerLink]="['/']" routerLinkActive="router-link-active"  title="Edit"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                </div>
+                <div class="col col-md-10 text-center">
+                    <h4 class="text-capitalize">{{task.title}}</h4>
+                </div>
+                <div class="col col-md-1">
+                    <a class="btn actionButtons mr-2 ml-2" [routerLink]="['/task-edit', task.id]" routerLinkActive="router-link-active"  title="Edit"><i class="fa fa-pencil-square-o fa-2x text-black iconButton " aria-hidden="true"></i></a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
            <p>{{task.description}}</p>

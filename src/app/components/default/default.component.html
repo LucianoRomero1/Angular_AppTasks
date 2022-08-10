@@ -15,22 +15,23 @@
             <div class="row" *ngIf="tasks && tasks.length >= 1 && loading == 'hide'">
                 <div class="col col-md-4" id="tasks-list" *ngFor="let task of tasks">
                     <div class="card task-item m-3">
-                        <div *ngIf="task.status == 'new'">
-                            <h5 class="card-header bg-primary text-white">New</h5>
-                        </div>
-                        <div *ngIf="task.status == 'to do'">
-                            <h5 class="card-header bg-secondary text-white">To do</h5>
-                        </div>
-                        <div *ngIf="task.status == 'done'">
-                            <h5 class="card-header bg-success text-white">Done</h5>
+                        <div class="card-header text-left">
+                            <div *ngIf="task.status == 'new'">
+                                <h5><span class="badge bg-primary text-white">New</span></h5>
+                            </div>
+                            <div *ngIf="task.status == 'to do'">
+                                <h5><span class="badge bg-secondary text-white">To do</span></h5>
+                            </div>
+                            <div *ngIf="task.status == 'done'">
+                                <h5><span class="badge bg-success text-white">Done</span></h5>
+                            </div>
                         </div>
                         <div class="card-body">
                             <h4 class="card-text">{{task.title}}</h4>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-info" [routerLink]="['/task', task.id]" title="Detail"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                            <a class="btn btn-warning mr-2 ml-2" href="#/" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            <a class="btn btn-danger" href="#/" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a class="btn actionButtons" [routerLink]="['/task', task.id]" title="Detail"><i class="fa fa-info-circle text-black iconButton" aria-hidden="true"></i></a>
+                            <a class="btn actionButtons" href="#/" title="Delete"><i class="fa fa-trash-o fa-2x text-danger iconButton" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

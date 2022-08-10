@@ -49,4 +49,16 @@ export class TaskService{
 
         return this._http.post(this.url+'/task/detail/'+id, params, {headers: headers});
     }
+
+    update(token, task, id){
+        //Esto se hace para pasarlo a JSON y poder manejar los datos
+        let json = JSON.stringify(task);
+        let params = "json="+json+"&&authorization="+token;
+
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        return this._http.post(this.url+'/task/edit/'+id, params, {headers: headers});
+    }
 }
