@@ -63,4 +63,19 @@ export class TaskDetailComponent implements OnInit {
     })
   }
 
+  deleteTask(id){    
+    this._taskService.deleteTask(this.token, id).subscribe({
+      next: (response) => {
+        if(Object.values(response)[0] != "error" || Object.values(response)[1] != "400"){
+          this._router.navigate(['/']);
+        }else{
+          alert("This task can not be deleted");
+        }
+      },
+      error: (error) => {          
+        console.log(<any>error);
+      }, 
+    });
+  }
+
 }

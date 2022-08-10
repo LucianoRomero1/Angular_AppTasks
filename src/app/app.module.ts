@@ -14,6 +14,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { NewTaskComponent } from './components/task/new-task/new-task.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 import { EditTaskComponent } from './components/task/new-task/edit-task.component';
+import { GenerateDatePipe } from './pipes/generate.date.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EditTaskComponent } from './components/task/new-task/edit-task.componen
     UserEditComponent,
     NewTaskComponent,
     TaskDetailComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    GenerateDatePipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { EditTaskComponent } from './components/task/new-task/edit-task.componen
     routing,
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
   ],
   bootstrap: [AppComponent]
 })

@@ -22,6 +22,9 @@ export class DefaultComponent implements OnInit {
   public pagePrev;
   public pageNext;
   public loading;
+  public filter: any = 0;
+  public order: any = 0;
+  public searchString;
 
   
   constructor(
@@ -85,6 +88,30 @@ export class DefaultComponent implements OnInit {
         }, 
       })
     });
+  }
+
+  search(){
+
+    this.loading = 'show';
+
+    //Valida que searchstring este vacio
+    if(!this.searchString || this.searchString.trim().length == 0){
+      this.searchString = null;
+    }
+
+    this._taskService.search(this.token, this.searchString, this.filter, this.order).subscribe({
+      next: (response) => {
+        if(Object.values(response)[0] != "error" || Object.values(response)[1] != "400"){
+          this.tasks = Object.values(response)[2];      
+          this.loading = 'hide';    
+        }else{
+          this._router.navigate(['/'])
+        }
+      },
+      error: (error) => {          
+        console.log(<any>error);
+      }, 
+    })
   }
 
 }

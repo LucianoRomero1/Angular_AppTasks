@@ -61,4 +61,31 @@ export class TaskService{
 
         return this._http.post(this.url+'/task/edit/'+id, params, {headers: headers});
     }
+
+    search(token, search = null, filter = null, order = null){
+        //El search es por URL
+        let url: string;
+        let params = "authorization="+token+"&&filter="+filter+"&&order="+order;        
+        
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        if(search == null){
+            url = this.url + '/task/search';
+        }else{
+            url = this.url + '/task/search/'+search;
+        }
+
+        return this._http.post(url, params, {headers: headers});
+    }
+
+    deleteTask(token, id){
+        let params = "authorization="+token;
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        return this._http.post(this.url+'/task/delete/'+id, params, {headers: headers});
+    }
 }

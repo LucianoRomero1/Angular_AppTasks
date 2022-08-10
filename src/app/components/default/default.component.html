@@ -7,6 +7,35 @@
             <p class="text-warning">Please, login to see more options</p>
         </div>
         <div class="text-center" *ngIf="identity && identity.sub">
+
+            <form class="col-md-12" action="">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="filter">Filter by</label>
+                        <select name="filter" class="form-control" [(ngModel)]="filter">
+                            <option value="0" selected="selected">Without filter</option>
+                            <option value="1">New</option>
+                            <option value="2">To do</option>
+                            <option value="3">Done</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="order">Order by</label>
+                        <select name="order" class="form-control" [(ngModel)]="order">
+                            <option value="0" selected="selected">Default</option>
+                            <option value="1">Date ASC</option>
+                            <option value="2">Date DESC</option>
+                        </select>
+                    </div>
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control" placeholder="What do you find?" name="searchString" [(ngModel)]="searchString">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-dark" (click)="search();"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+            
             <div class="all-tasks">
                 <div class="text-center loader" *ngIf="loading == 'show'">
                     <img src="assets/img/loader.gif" alt="Loading...">
@@ -30,13 +59,17 @@
                             <h4 class="card-text">{{task.title}}</h4>
                         </div>
                         <div class="card-footer">
-                            <a class="btn actionButtons" [routerLink]="['/task', task.id]" title="Detail"><i class="fa fa-info-circle text-black iconButton" aria-hidden="true"></i></a>
-                            <a class="btn actionButtons" href="#/" title="Delete"><i class="fa fa-trash-o fa-2x text-danger iconButton" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
+                            <a class="btn actionButtons" [routerLink]="['/task', task.id]" title="Detail"><i class="fa fa-info-circle text-info iconButton" aria-hidden="true"></i></a>
+                        </div>   
+                    </div>  
                 </div>
             </div>
-            <ul class="pagination pagination-md float-right mt-2" *ngIf="tasks && tasks.length > 1">
+
+            <div class="alert alert-warning m-2" *ngIf="loading == 'hide' && (!tasks || tasks.length == 0)">
+                <p>No results found, <a [routerLink]="['/new-task']">create here</a></p>
+            </div>
+            
+            <ul class="pagination pagination-md float-right mt-2" *ngIf="tasks && tasks.length > 1 && !searchString && !filter && !order">
                 <li class="page-item">
                     <a class="page-link" [routerLink]="['/index', pagePrev]" aria-label="Previous">
                         Previous
